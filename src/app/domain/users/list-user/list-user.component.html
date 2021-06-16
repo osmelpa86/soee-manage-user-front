@@ -79,7 +79,7 @@
               </th>
               <td mat-cell *matCellDef="let user">
                 <div class="btn-group">
-                  <button mat-icon-button routerLinkActive="active"  [routerLink]="[ '/editar', user.id ]"
+                  <button mat-icon-button routerLinkActive="active" [routerLink]="[ '/editar', user.id ]"
                           class="button-box"
                           matTooltip="Actualizar">
                     <mat-icon>edit</mat-icon>
@@ -115,27 +115,37 @@
 </ng-template>
 
 <ng-template #filterContentTemplate role="region">
+  <form [formGroup]="filterForm">
+    <mat-form-field class="fill-width" appearance="outline">
+      <mat-label>
+        Nombre
+      </mat-label>
+      <input matInput type="text" name="name" formControlName="name" #name/>
+    </mat-form-field>
 
-  <mat-form-field class="fill-width" appearance="outline">
-    <mat-label>
-      Nombre
-    </mat-label>
-    <input matInput [(ngModel)]="filter.name"/>
-  </mat-form-field>
+    <div>
+      <mat-form-field class="fill-width" appearance="outline">
+        <mat-label>
+          Correo
+        </mat-label>
+        <input matInput type="text" name="email" formControlName="email" #email/>
+      </mat-form-field>
+      <div *ngIf="filterForm.get('email').hasError('email') && filterForm.get('email').touched"
+           class="error-container-div">
+        <mat-error class="error-container">
+          <mat-icon class="error-icon">error_outline</mat-icon>
+          <span class="error-text">El correo introducido es incorrecto</span>
+        </mat-error>
+      </div>
+    </div>
 
-  <mat-form-field class="fill-width" appearance="outline">
-    <mat-label>
-      Correo
-    </mat-label>
-    <input matInput [(ngModel)]="filter.email" type="email"/>
-  </mat-form-field>
-
-  <mat-form-field class="fill-width" appearance="outline">
-    <mat-label>
-      Edad
-    </mat-label>
-    <input matInput type="number" appMaxLength="2" [(ngModel)]="filter.age"/>
-  </mat-form-field>
+    <mat-form-field class="fill-width" appearance="outline">
+      <mat-label>
+        Edad
+      </mat-label>
+      <input matInput type="number"  type="text" name="age" formControlName="age" />
+    </mat-form-field>
+  </form>
 </ng-template>
 
 <ng-template #filterContentTemplateHeader role="region">
@@ -157,8 +167,8 @@
 </ng-template>
 
 <ng-template #filterContentTemplateFooter role="region">
-  <!--  <div class="row button-container">-->
-  <button mat-stroked-button color="primary" (click)="filterEventData()" style="margin-right: 8px;">
+  <button mat-stroked-button color="primary" (click)="filterEventData()" style="margin-right: 8px;"
+          [disabled]="filterForm.get('email').hasError('email')">
     <mat-icon>check</mat-icon>
     Aceptar
   </button>
@@ -167,7 +177,6 @@
     <mat-icon>backspace</mat-icon>
     Limpiar
   </button>
-  <!--  </div>-->
 </ng-template>
 
 <app-filter #rightSidenav [sidenavContentTemplate]="contentTemplate"

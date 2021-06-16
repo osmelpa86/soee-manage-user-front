@@ -44,9 +44,9 @@ export class LoginComponent implements OnInit {
       data => {
         const jwtResponse: JwtResponse | null = data.body;
         this.tokenStorage.saveToken(jwtResponse!.token);
-        this.tokenStorage.saveUsername(jwtResponse!.username);
+        this.tokenStorage.saveUsername(jwtResponse!.email);
         this.tokenStorage.saveAuthorities(jwtResponse!.authorities);
-        this.saveProfileInCache(jwtResponse!.username);
+        this.saveProfileInCache(jwtResponse!.email);
         this.isLoginFailed = false;
         this.route.navigate(['/inicio'], {replaceUrl: true});
       },
@@ -62,7 +62,7 @@ export class LoginComponent implements OnInit {
     );
   }
 
-  saveProfileInCache(email:string) {
+  saveProfileInCache(email:any) {
     this.usersService.getByEmail(email).subscribe(response => {
       this.tokenStorage.saveProfile(response);
     });

@@ -34,22 +34,21 @@ export class UsersService {
     return this.http.get<UserResponse[]>(`${config.url.users}/all`);
   }
 
-  getOne(id:any) {
+  getOne(id: any) {
     return this.http.get<UserResponse>(`${config.url.users}/${id}/`);
   }
 
-  getByEmail(email:string) {
+  getByEmail(email: any) {
     return this.http.get<UserResponse>(`${config.url.users}/filter/${email}/`);
   }
 
-  search(chain: string,page: number, size: number, sort: string ) {
+  search(chain: string, page: number, size: number, sort: string) {
     return this.http.get<UsersResponse>(`${config.url.users}/filter/chain?chain=${chain}&page=${page}&size=${size}&sort=${sort}`);
   }
 
-  // http://127.0.0.1:8085/soee/v1/users/filter?page=0&size=8&sort=id,asc
   filter(page: number, size: number, sort: string, modal: UserModal) {
     // tslint:disable-next-line:max-line-length
-    return this.http.post<UsersResponse>(`${config.url.users}/filter?&page=${page}&size=${size}&sort=${sort}`,modal);
+    return this.http.post<UsersResponse>(`${config.url.users}/filter?&page=${page}&size=${size}&sort=${sort}`, modal);
   }
 
   enrroll(user: UserRequest): Observable<HttpResponse<UserRequest>> {
@@ -69,7 +68,6 @@ export class UsersService {
     return this.http.delete(`${config.url.users}/${id}/`);
   }
 
-  // http://127.0.0.1:8085/soee/v1/users/6
   changePassword(changePassword: ChangePassword, userId: number): Observable<ChangePasswordResponse> {
     return this.http.patch<ChangePasswordResponse>(`${config.url.users}/${userId}/`, changePassword);
   }

@@ -39,7 +39,7 @@ export class AddUserComponent implements OnInit {
       email: ['', Validators.compose([Validators.required, Validators.email])],
       password: ['', Validators.compose([Validators.required, CustomValidators.passwordValidator()])],
       confirmPassword: ['', Validators.compose([Validators.required, CustomValidators.passwordValidator()])]
-    }, formOptions)
+    }, formOptions);
   }
 
   goBack() {

@@ -5,7 +5,7 @@ const apiServerUrl = `http://${apiServerIp}:${apiServerPort}/soee/v1/`;
 
 export const config = {
   url: {
-    auth: `${apiServerUrl}autentication`,
+    auth: `${apiServerUrl}authentication`,
     users: `${apiServerUrl}users`,
     enrroll: `${apiServerUrl}enroll`,
   },

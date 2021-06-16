@@ -11,6 +11,7 @@ import {TokenStorageService} from "../../auth/service/token-storage.service";
 import {NotificationSnackService} from "../../../core/commons/notification-component/notification-snack.service";
 import {getUsers} from "../model/users-response";
 import {ConfirmDeleteComponent} from "../../../core/commons/confirm-delete/confirm-delete.component";
+import {FormBuilder, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-list-user',
@@ -99,28 +100,36 @@ export class ListUserComponent implements OnInit {
   searchValue = '';
   loading = false;
 
+  filterForm: any;
+
   constructor(public dialog: MatDialog,
               private userService: UsersService,
               private tokenStorageService: TokenStorageService,
-              private ns: NotificationSnackService) {
+              private ns: NotificationSnackService,
+              private formBuilder: FormBuilder) {
   }
 
   ngOnInit(): void {
     this.initDatatable();
+    this.filterForm = this.formBuilder.group({
+      name: [''],
+      age: [''],
+      email: ['', Validators.email]
+    });
   }
 
   initDatatable() {
     this.loadData();
   }
 
-  refreshPaginator(size:number) {
+  refreshPaginator(size: number) {
     if (size === 0 && this.paginator.hasPreviousPage()) {
       this.paginator.previousPage();
     }
   }
 
-  loadData(doOnSuccess?:any, doOnError?:any) {
-    this.userService.filter(this.pageIndex, this.pageSize, this.sortExpression,this.filter).subscribe(response => {
+  loadData(doOnSuccess?: any, doOnError?: any) {
+    this.userService.filter(this.pageIndex, this.pageSize, this.sortExpression, this.filter).subscribe(response => {
       this.data = getUsers(response);
       this.dataSource.data = this.data;
       this.length = response.page.totalElements;
@@ -130,7 +139,7 @@ export class ListUserComponent implements OnInit {
     });
   }
 
-  getServerData(event:any) {
+  getServerData(event: any) {
     this.pageIndex = event.pageIndex;
     this.pageSize = event.pageSize;
     if (this.searchValue !== '') {
@@ -140,12 +149,13 @@ export class ListUserComponent implements OnInit {
     }
   }
 
-  sort(event:any) {
+  sort(event: any) {
     this.sortExpression = `${event.active},${event.direction}`;
     this.loadData();
   }
 
-  filterEventData(event?:any) {
+  filterEventData(event?: any) {
+    this.filter = this.filterForm.value;
     this.isShowClearFiltersEnabled = true;
     this.isShowFiltersEnabled = true;
     this.pageIndex = 0;
@@ -159,6 +169,7 @@ export class ListUserComponent implements OnInit {
       age: null!,
       email: ''
     };
+    this.filterForm.patchValue(this.filter);
     this.pageSize = 8;
     this.pageIndex = 0;
     this.length = 0;
@@ -195,12 +206,12 @@ export class ListUserComponent implements OnInit {
       }, null!, 9000, 'success');
       this.initDatatable();
     }, error => {
-        this.ns.openFromComponent({
-          title: `Usuario ${user.name}`,
-          message: 'Ha ocurrido un error al eliminar el Usuario.',
-          icon: 'error',
-          search: user.name
-        }, null!, 9000, 'danger');
+      this.ns.openFromComponent({
+        title: `Usuario ${user.name}`,
+        message: 'Ha ocurrido un error al eliminar el Usuario.',
+        icon: 'error',
+        search: user.name
+      }, null!, 9000, 'danger');
     });
   }
 
@@ -210,7 +221,7 @@ export class ListUserComponent implements OnInit {
       this.searchValue! = value;
     }
 
-    this.userService.search(this.searchValue,this.pageIndex, this.pageSize, this.sortExpression).subscribe(response => {
+    this.userService.search(this.searchValue, this.pageIndex, this.pageSize, this.sortExpression).subscribe(response => {
       this.data = getUsers(response);
       this.dataSource.data = this.data;
       this.length = response.page.totalElements;
