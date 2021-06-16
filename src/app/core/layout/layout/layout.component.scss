@@ -1,0 +1,9 @@
+.page-content {
+  padding: 10px;
+  background-color: #f2f3f8;
+  position: absolute;
+  top: 64px;
+  width: 100%;
+  height: calc(100vh - 64px);
+  overflow-y: auto;
+}

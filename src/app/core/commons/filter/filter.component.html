@@ -1,0 +1,24 @@
+<mat-sidenav-container (backdropClick)="close('backdrop')" [hasBackdrop]="true">
+  <mat-sidenav #rightSidenav class="mat-sidenav-filter"
+               autoFocus="false"
+               position="end"
+               mode="over"
+               [fixedInViewport]="true"
+               [fixedTopGap]="64">
+
+    <div class="app-filter-header">
+      <ng-container *ngTemplateOutlet="filterContentTemplateHeader!;"></ng-container>
+    </div>
+
+    <div class="filter-content-template">
+      <ng-container *ngTemplateOutlet="filterContentTemplate!;"></ng-container>
+    </div>
+    <div class="filter-btn-content">
+      <ng-container *ngTemplateOutlet="filterContentTemplateFooter!;"></ng-container>
+    </div>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <ng-container *ngTemplateOutlet="sidenavContentTemplate!;"></ng-container>
+  </mat-sidenav-content>
+</mat-sidenav-container>

@@ -1,0 +1,66 @@
+<div class="principal-background">
+  <mat-card class="login-card-container">
+    <div class="login-title-container">
+      <span class="login-title">Inicio de Sesión</span>
+    </div>
+
+    <div class="login-form-container">
+      <form [formGroup]="loginForm" style="width: 100% !important;">
+        <div>
+          <mat-form-field class="fill-width" appearance="outline">
+            <mat-label>
+              Correo
+            </mat-label>
+            <input matInput type="text" name="username" formControlName="username" #username>
+          </mat-form-field>
+          <div *ngIf="loginForm.get('username').hasError('required') && loginForm.get('username').touched"
+               class="error-container-div">
+            <mat-error class="error-container">
+              <mat-icon class="error-icon">error_outline</mat-icon>
+              <span class="error-text">El campo correo es obligatorio</span>
+            </mat-error>
+          </div>
+          <div *ngIf="loginForm.get('username').hasError('email') && loginForm.get('username').touched"
+               class="error-container-div">
+            <mat-error class="error-container">
+              <mat-icon class="error-icon">error_outline</mat-icon>
+              <span class="error-text">El correo introducido es incorrecto</span>
+            </mat-error>
+          </div>
+        </div>
+        <div>
+          <mat-form-field class="fill-width" appearance="outline">
+            <mat-label>
+              Contraseña
+            </mat-label>
+            <input matInput type="password" name="password" formControlName="password"
+                   #password>
+          </mat-form-field>
+          <div *ngIf="loginForm.get('password').hasError('required') && loginForm.get('password').touched"
+               class="error-container-div">
+            <mat-error class="error-container">
+              <mat-icon class="error-icon">error_outline</mat-icon>
+              <span class="error-text">El campo contraseña es obligatorio</span>
+            </mat-error>
+          </div>
+        </div>
+      </form>
+      <button mat-raised-button color="primary" (click)="submitForm($event)"
+              [disabled]="!loginForm.valid">
+        <mat-icon>done</mat-icon>
+        Aceptar
+      </button>
+    </div>
+
+    <div class="login-card-footer">
+      <div class="login-o">
+        <span class="text-o">O</span>
+      </div>
+      <button mat-button routerLinkActive="active" routerLink="/registrarse" style="color: white">
+        <mat-icon>person_add</mat-icon>
+        Registrarse
+      </button>
+      <span class="login-copyright">©{{ datePipe.transform(now, 'yyyy') }}, SOEE.</span><br>
+    </div>
+  </mat-card>
+</div>

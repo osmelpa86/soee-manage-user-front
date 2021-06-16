@@ -1,0 +1,187 @@
+<form [formGroup]="userForm" (submit)="submitForm($event)">
+  <mat-card>
+    <mat-card-content class="mat-card-content-custom-not-scroll">
+      <mat-toolbar>
+        <button mat-icon-button type="button" style="margin-right: 10px;" (click)="goBack()">
+          <mat-icon>person_add</mat-icon>
+        </button>
+
+        <span>Adicionar usuario</span>
+
+      </mat-toolbar>
+
+      <mat-divider></mat-divider>
+
+      <div class="fill-width" style="margin-top: 10px;">
+        <div class="row">
+          <div class="col-md-5">
+            <mat-form-field class="fill-width" appearance="outline">
+              <mat-label>
+                Nombre
+              </mat-label>
+              <input matInput type="text" name="name" formControlName="name" #name
+                     maxlength="100">
+              <mat-hint align="end">{{name.value.length}}/100</mat-hint>
+            </mat-form-field>
+            <div *ngIf="userForm.get('name').hasError('required') && userForm.get('name').touched"
+                 class="error-container-div">
+              <mat-error class="error-container">
+                <mat-icon class="error-icon">error_outline</mat-icon>
+                <span class="error-text">El campo nombre es obligatorio</span>
+              </mat-error>
+            </div>
+            <div *ngIf="userForm.get('name').hasError('onlySpacesdValidator') && userForm.get('name').touched"
+                 class="error-container-div">
+              <mat-error class="error-container">
+                <mat-icon class="error-icon">error_outline</mat-icon>
+                <span class="error-text">El campo nombre contiene únicamente espacios</span>
+              </mat-error>
+            </div>
+          </div>
+          <div class="col-md-5">
+            <mat-form-field class="fill-width" appearance="outline">
+              <mat-label>
+                Correo
+              </mat-label>
+              <input matInput type="text" name="email" formControlName="email" #email
+                     maxlength="100">
+              <mat-hint align="end">{{email.value.length}}/100</mat-hint>
+            </mat-form-field>
+            <div *ngIf="userForm.get('email').hasError('required') && userForm.get('email').touched"
+                 class="error-container-div">
+              <mat-error class="error-container">
+                <mat-icon class="error-icon">error_outline</mat-icon>
+                <span class="error-text">El campo correo es obligatorio</span>
+              </mat-error>
+            </div>
+            <div *ngIf="userForm.get('email').hasError('email') && userForm.get('email').touched"
+                 class="error-container-div">
+              <mat-error class="error-container">
+                <mat-icon class="error-icon">error_outline</mat-icon>
+                <span class="error-text">El correo introducido es incorrecto</span>
+              </mat-error>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <mat-form-field class="fill-width" appearance="outline">
+              <mat-label>
+                Edad
+              </mat-label>
+              <input matInput type="number" name="age" formControlName="age" #age
+                     appMaxLength="2">
+              <mat-hint align="end">{{age.value.length}}/2
+              </mat-hint>
+            </mat-form-field>
+            <div *ngIf="userForm.get('age').hasError('required') && userForm.get('age').touched"
+                 class="error-container-div">
+              <mat-error class="error-container">
+                <mat-icon class="error-icon">error_outline</mat-icon>
+                <span class="error-text">El campo edad es obligatorio</span>
+              </mat-error>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <mat-form-field class="fill-width" appearance="outline">
+              <mat-label>
+                Contraseña
+              </mat-label>
+              <input matInput [type]="hidePassword ? 'password' : 'text'" name="password" formControlName="password"
+                     #password
+                     maxlength="100">
+              <mat-hint align="end">{{password.value.length}}/100</mat-hint>
+              <div matSuffix class="multiple-suffix-btns">
+                <div matRipple [matRippleCentered]="true" class="ripple-suffix">
+                  <mat-icon
+                    (click)="hidePassword = !hidePassword">{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </div>
+                <div matRipple [matRippleCentered]="true" class="ripple-suffix">
+                  <mat-icon
+                    matTooltip="La contraseña debe estar compuesta por al menos un carácter especial, letras en mayúsculas, letras minúsculas y números. La longitud de la misma debe ser igual o superior a 8 caracteres"
+                    matTooltipTouchGestures="off">info
+                  </mat-icon>
+                </div>
+              </div>
+            </mat-form-field>
+            <div *ngIf="userForm.get('password').hasError('required') && userForm.get('password').touched"
+                 class="error-container-div">
+              <mat-error class="error-container">
+                <mat-icon class="error-icon">error_outline</mat-icon>
+                <span class="error-text">El campo contraseña es obligatorio</span>
+              </mat-error>
+            </div>
+            <div *ngIf="userForm.get('password').hasError('passwordValidator') && userForm.get('password').touched"
+                 class="error-container-div">
+              <mat-error class="error-container">
+                <mat-icon class="error-icon">error_outline</mat-icon>
+                <span class="error-text">La contraseña no cumple con los requisitos</span>
+              </mat-error>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <mat-form-field class="fill-width" appearance="outline">
+              <mat-label>
+                Confirmar contraseña
+              </mat-label>
+              <input matInput [type]="hidePasswordConfirm ? 'password' : 'text'" name="confirmPassword"
+                     formControlName="confirmPassword" #confirmPassword
+                     maxlength="100">
+              <mat-hint align="end">{{confirmPassword.value.length}}/100</mat-hint>
+              <div matSuffix class="multiple-suffix-btns">
+                <div matRipple [matRippleCentered]="true" class="ripple-suffix">
+                  <mat-icon
+                    (click)="hidePasswordConfirm = !hidePasswordConfirm">{{hidePasswordConfirm ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </div>
+                <div matRipple [matRippleCentered]="true" class="ripple-suffix">
+                  <mat-icon
+                    matTooltip="La contraseña debe estar compuesta por al menos un carácter especial, letras en mayúsculas, letras minúsculas y números. La longitud de la misma debe ser igual o superior a 8 caracteres"
+                    matTooltipTouchGestures="off">info
+                  </mat-icon>
+                </div>
+              </div>
+            </mat-form-field>
+            <div *ngIf="userForm.get('confirmPassword').hasError('required') && userForm.get('confirmPassword').touched"
+                 class="error-container-div">
+              <mat-error class="error-container">
+                <mat-icon class="error-icon">error_outline</mat-icon>
+                <span class="error-text">El campo confirmar contraseña es obligatorio</span>
+              </mat-error>
+            </div>
+            <div
+              *ngIf="userForm.get('confirmPassword').hasError('passwordValidator') && userForm.get('confirmPassword').touched"
+              class="error-container-div">
+              <mat-error class="error-container">
+                <mat-icon class="error-icon">error_outline</mat-icon>
+                <span class="error-text">La contraseña no cumple con los requisitos</span>
+              </mat-error>
+            </div>
+            <div
+              *ngIf="userForm.get('confirmPassword').hasError('confirmPasswordValidator') && userForm.get('confirmPassword').touched"
+              class="error-container-div">
+              <mat-error class="error-container">
+                <mat-icon class="error-icon">error_outline</mat-icon>
+                <span class="error-text">Las contraseñas no coinciden</span>
+              </mat-error>
+            </div>
+          </div>
+        </div>
+      </div>
+    </mat-card-content>
+
+    <mat-divider></mat-divider>
+
+    <mat-card-actions align="end">
+      <button mat-button type="button" (click)="goBack()">
+        <mat-icon>close</mat-icon>
+        Cancelar
+      </button>
+      <button mat-button color="primary"
+              [disabled]="!userForm.valid">
+        <mat-icon>done</mat-icon>
+        Adicionar
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</form>

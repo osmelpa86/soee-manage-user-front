@@ -1,0 +1,79 @@
+.main-toolbar {
+  background-color: #fafbfc;
+  box-shadow: 0 1px 15px 1px rgba(113, 106, 202, .1) !important;
+  position: absolute;
+  //z-index: 2;
+}
+
+.fill-space {
+  flex: 1 1 auto;
+}
+
+//.app-brand {
+//  height: 64px;
+//  margin-left: -16px;
+//}
+
+.app-logo{
+  margin-top: 5px;
+}
+
+.page-title{
+  color: #3f51b5;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.icon-app-logo{
+  font-size: 55px;
+  height: 55px;
+  width: 55px;
+  color: #3f51b5;
+}
+
+#userMenu a.active {
+  color: #3f51b5;
+  background-color: #f5f5f5;
+}
+
+#userMenu .mat-icon {
+  /*color: rgba(0, 0, 0, .87);*/
+  color: #3f51b5;
+}
+
+#userMenu a.active .mat-icon {
+  color: #3f51b5;
+}
+
+#userMenu header {
+  padding: 0 16px;
+  height: 48px;
+}
+
+#userMenu header div {
+  max-width: 190px;
+}
+
+#userMenu header .mat-icon, #userMenu header div {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+#userMenu header .mat-icon {
+  margin: 0 14px 0 -4px;
+  background-color: rgba(0, 0, 0, .87);
+  color: #ffffff;
+  border-radius: 50px;
+  width: 30px;
+  height: 30px;
+  padding: 3px;
+}
+
+#userMenu header h2 {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  margin: 0;
+  overflow-x: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}

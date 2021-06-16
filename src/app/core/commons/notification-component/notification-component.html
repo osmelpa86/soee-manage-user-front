@@ -1,0 +1,18 @@
+<div class="notification-component-container">
+  <div class="notification-component-content">
+    <div class="icon-container-elevation">
+      <mat-icon>{{data.icon}}</mat-icon>
+    </div>
+  </div>
+  <div class="notification-component-message-content">
+    <div class="info-message-title" [innerHTML]="getInnerHtml(data.title) | highlighTitleSearchPipe: data.search"></div>
+    <div class="info-message-content">
+      {{data.message}}
+    </div>
+
+  </div>
+  <button mat-icon-button class="notification-component-close-btn"
+          matTooltip="Cerrar" (click)="sbRef.dismiss()">
+    <mat-icon class="notification-component-icon-close">close</mat-icon>
+  </button>
+</div>

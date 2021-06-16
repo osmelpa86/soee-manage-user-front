@@ -1,0 +1,176 @@
+<ng-template #contentTemplate role="region">
+  <mat-card>
+    <mat-card-content class="mat-card-content-custom-not-scroll">
+      <mat-toolbar>
+
+        <mat-button-toggle-group [value]="null">
+          <mat-button-toggle [value]="null"
+                             class="custom-mat-button-toggle">{{length === 1 ? 'Usuario' : 'Usuarios'}}
+            <span
+              class="category-length">({{length}})</span></mat-button-toggle>
+        </mat-button-toggle-group>
+
+        <span style="flex: 1 1 auto;"></span>
+
+        <search #search (searchDataEvent)="searchDataEvent($event)"
+                (clearSearchDataEvent)="clearFilters()"
+                (toggleSearch)="clearFilters()"
+                [hideSearch]="!isShowFiltersEnabled"
+                [loading]="loading"></search>
+
+        <button mat-icon-button *ngIf="search.displaySearch == false"
+                matTooltip='Filtrar' color="primary"
+                (click)="rightSidenav.toggle();"
+                class="button-box">
+          <mat-icon>
+            filter_alt
+          </mat-icon>
+        </button>
+
+        <button mat-icon-button (click)="clearFilters()" class="button-box" color="primary"
+                matTooltip="Limpiar" *ngIf="isShowClearFiltersEnabled">
+          <mat-icon>backspace</mat-icon>
+        </button>
+
+        <a mat-icon-button routerLinkActive="active" routerLink="/adicionar"
+           class="button-box" color="primary" matTooltip="Adicionar">
+          <mat-icon>add_circle</mat-icon>
+        </a>
+      </mat-toolbar>
+
+      <mat-divider></mat-divider>
+
+      <div class="mat-elevation-z8 table-with-paginator">
+        <div class="main-table-row-8">
+          <table mat-table matSort class="hover"
+                 [dataSource]="dataSource"
+                 (matSortChange)="sort($event)">
+
+            <ng-container matColumnDef="name">
+              <th mat-header-cell *matHeaderCellDef>
+                Nombre
+              </th>
+              <td mat-cell *matCellDef="let user">
+                {{user.name}}
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="email">
+              <th mat-header-cell *matHeaderCellDef>
+                Correo
+              </th>
+              <td mat-cell *matCellDef="let user">
+                {{user.email}}
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="age">
+              <th mat-header-cell *matHeaderCellDef>
+                Edad
+              </th>
+              <td mat-cell *matCellDef="let user">
+                {{user.age}}
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="actions">
+              <th mat-header-cell *matHeaderCellDef class="header-column-1">
+                Opciones
+              </th>
+              <td mat-cell *matCellDef="let user">
+                <div class="btn-group">
+                  <button mat-icon-button routerLinkActive="active"  [routerLink]="[ '/editar', user.id ]"
+                          class="button-box"
+                          matTooltip="Actualizar">
+                    <mat-icon>edit</mat-icon>
+                  </button>
+
+                  <button mat-icon-button
+                          matTooltip="Eliminar"
+                          (click)="showConfirmDeleteDialog(user)"
+                          class="button-box">
+                    <mat-icon>delete</mat-icon>
+                  </button>
+                </div>
+              </td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let user; columns: displayedColumns;"></tr>
+          </table>
+        </div>
+        <app-empty-list *ngIf="dataSource.data.length === 0"></app-empty-list>
+
+        <mat-paginator #paginator showFirstLastButtons
+                       [length]="length"
+                       [pageIndex]="pageIndex"
+                       [pageSize]="pageSize"
+                       [pageSizeOptions]="[8, 16, 24, 32]"
+                       [style.display]="dataSource.data.length===0 ? 'none':'inherit'"
+                       (page)="getServerData($event)">
+        </mat-paginator>
+      </div>
+
+    </mat-card-content>
+  </mat-card>
+</ng-template>
+
+<ng-template #filterContentTemplate role="region">
+
+  <mat-form-field class="fill-width" appearance="outline">
+    <mat-label>
+      Nombre
+    </mat-label>
+    <input matInput [(ngModel)]="filter.name"/>
+  </mat-form-field>
+
+  <mat-form-field class="fill-width" appearance="outline">
+    <mat-label>
+      Correo
+    </mat-label>
+    <input matInput [(ngModel)]="filter.email" type="email"/>
+  </mat-form-field>
+
+  <mat-form-field class="fill-width" appearance="outline">
+    <mat-label>
+      Edad
+    </mat-label>
+    <input matInput type="number" appMaxLength="2" [(ngModel)]="filter.age"/>
+  </mat-form-field>
+</ng-template>
+
+<ng-template #filterContentTemplateHeader role="region">
+  <div class="row fill-width">
+    <div class="col-md-1 header-align-items">
+      <mat-icon>filter_alt</mat-icon>
+    </div>
+    <div class="col-md-10 header-align-items" style="margin-top: 2px; margin-left: -8px;">
+      Filter
+    </div>
+    <div class="col-md-1">
+      <button mat-icon-button (click)="rightSidenav.toggle();"
+              matTooltip="Cerrar"
+              class="buttom-box-circle">
+        <mat-icon style="font-size: 20px;">close</mat-icon>
+      </button>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #filterContentTemplateFooter role="region">
+  <!--  <div class="row button-container">-->
+  <button mat-stroked-button color="primary" (click)="filterEventData()" style="margin-right: 8px;">
+    <mat-icon>check</mat-icon>
+    Aceptar
+  </button>
+
+  <button mat-stroked-button color="primary" (click)="clearFilters()">
+    <mat-icon>backspace</mat-icon>
+    Limpiar
+  </button>
+  <!--  </div>-->
+</ng-template>
+
+<app-filter #rightSidenav [sidenavContentTemplate]="contentTemplate"
+            [filterContentTemplate]="filterContentTemplate"
+            [filterContentTemplateHeader]="filterContentTemplateHeader"
+            [filterContentTemplateFooter]="filterContentTemplateFooter"></app-filter>

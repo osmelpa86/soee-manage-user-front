@@ -1,0 +1,244 @@
+/* You can add global styles to this file, and also import other style files */
+@import "assets/styles/cards.scss";
+@import "assets/styles/tables.scss";
+@import "assets/styles/filter.scss";
+@import "assets/styles/error_page.scss";
+@import "~bootstrap/dist/css/bootstrap-grid.css";
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+* {
+  box-sizing: border-box;
+  scrollbar-width: thin;
+  scrollbar-color: inset 0 0 6px rgba(0, 0, 0, 0.3) #F5F5F5;
+}
+
+/* Works on Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+*::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: #F5F5F5;
+  border-radius: 10px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;
+  border-radius: 50px;
+  border: 3px solid #AAA;
+}
+
+.fill-width {
+  width: 100%;
+}
+
+/*Errores form*/
+.error {
+  color: #9a0007;
+}
+
+/*.error-icon {*/
+/*  position: absolute;*/
+/*  margin-top: 3px;*/
+/*}*/
+
+.error-icon.mat-icon {
+  font-size: 13px !important;
+  width: 13px !important;
+  height: 13px !important;
+}
+
+.error-text {
+  font-size: 13px;
+  margin-top: 2px;
+  margin-left: 5px;
+}
+
+.error-container-div {
+  margin-top: -20px;
+  margin-bottom: 5px;
+}
+
+.error-container {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  justify-content: left !important;
+  vertical-align: center !important;
+  horiz-align: center !important;
+  align-self: center !important;
+}
+
+/*Mat Slide Toggle*/
+.mat-slide-toggle.mat-checked .mat-slide-toggle-thumb {
+  /*background-color: #3f51b5 !important;*/
+  background-color: white !important;
+}
+
+.mat-slide-toggle-thumb {
+  height: 16px !important;
+  width: 16px !important;
+  border-radius: 50%;
+  margin-top: 5px !important;
+  margin-left: 2px !important;
+  margin-right: 2px !important;
+  background-color: gainsboro !important;
+}
+
+.mat-slide-toggle-bar {
+  height: 20px !important;
+  border-radius: 60px !important;
+}
+
+.mat-slide-toggle.mat-checked .mat-slide-toggle-bar {
+  /*background-color: rgba(63, 81, 181, 0.7) !important;*/
+  background-color: #3f51b5;
+}
+
+.mat-slide-toggle.mat-checked .mat-ripple-element {
+  background-color: #3f51b5 !important;
+}
+
+.mat-menu-item .mat-icon {
+  color: #3f51b5;
+}
+
+/*Tab Panel*/
+.tab-internal .mat-tab-label {
+  height: 28px !important;
+  min-width: 140px;
+}
+
+.tab-internal .mat-tab-label:hover {
+  color: #3f51b5;
+  opacity: 100%;
+}
+
+/*Ripple para el div que contiene el suffijo de los input*/
+.ripple-suffix {
+  padding-left: 7px;
+  padding-top: 6px;
+  padding-bottom: 4px;
+  padding-right: 3px;
+  border-radius: 100%;
+  cursor: pointer;
+}
+
+.multiple-suffix-btns {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  justify-content: left !important;
+  vertical-align: center !important;
+  horiz-align: center !important;
+  align-self: center !important;
+}
+
+.form-register{
+  width: 100%;
+  height: 100%;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  vertical-align: center !important;
+  horiz-align: center !important;
+}
+
+.register-copyright{
+  /*position: absolute;*/
+  /*bottom: 50px;*/
+  margin-top: 20px;
+}
+
+.button-box {
+  width: 32px !important;
+  height: 32px !important;
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  justify-content: center !important;
+  vertical-align: center !important;
+  horiz-align: center !important;
+  border-radius: 100% !important;
+}
+
+.button-box-circle {
+  width: 26px !important;
+  height: 26px !important;
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  justify-content: center !important;
+  vertical-align: center !important;
+  horiz-align: center !important;
+  border-radius: 100% !important;
+}
+
+.button-box:hover, .button-box-circle:hover {
+  background: #d6d6d6 !important;
+  border-radius: 100% !important;
+}
+
+.button-box .mat-icon, .button-box-circle .mat-icon {
+  color: #3f51b5 !important;
+  border-radius: 100% !important;
+}
+
+/*Togle group ubicato en los listado para seleccionar segun el tipo*/
+.custom-mat-button-toggle {
+  margin-top: -4px !important;
+}
+
+.category-length {
+  color: #3f51b5;
+  margin-left: 4px;
+  font-weight: bold;
+}
+
+.mat-button-toggle-label-content {
+  font-size: 14px !important;
+  border-radius: 0px !important;
+}
+
+.mat-button-toggle-button {
+  height: 40px !important;
+  padding: 0 !important;
+  font-size: 12px;
+  border-radius: 0px !important;
+}
+
+.mat-button-toggle-standalone.mat-button-toggle-appearance-standard, .mat-button-toggle-group-appearance-standard {
+  border: transparent;
+  border-radius: 0px !important;
+}
+
+.mat-button-toggle-group-appearance-standard .mat-button-toggle + .mat-button-toggle {
+  border: transparent;
+  border-radius: 0px !important;
+}
+
+.mat-button-toggle-checked {
+  background-color: rgba(0, 0, 0, 0.05) !important;
+  border-bottom: 4px solid #3f51b5 !important;
+  border-radius: 0px !important;
+}
+
+.header-column-1 {
+  width: 60px;
+}
+
+th.mat-header-cell.header-column, th.mat-header-cell.header-column-1 {
+  text-align: center !important;
+}
+
+.title-select {
+  font-family: Arial Narrow, sans-serif;
+  font-style: oblique;
+  font-weight: 600;
+  font-stretch: ultra-expanded;
+}

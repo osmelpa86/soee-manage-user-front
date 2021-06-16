@@ -1,0 +1,41 @@
+<mat-toolbar class="main-toolbar">
+  <div class="app-brand">
+    <img src="../../../../assets/images/logo-sistemas-oee.png" class="app-logo">
+  </div>
+
+  <span class="fill-space"></span>
+
+  <span class="fill-space"></span>
+  <button mat-button [matMenuTriggerFor]="userMenu">
+    <span style="color: #3f51b5;">
+      {{user.name}}
+    </span>
+    <mat-icon style="color: #3f51b5;">account_circle</mat-icon>
+  </button>
+</mat-toolbar>
+
+<mat-menu #userMenu xPosition="before" class="userMenu">
+  <div id="userMenu">
+    <header style="margin-top:8px;">
+      <mat-icon style="background: #3f51b5;">person</mat-icon>
+      <div>
+        <h2 style="color: #3f51b5;">{{user.email}}</h2>
+      </div>
+    </header>
+
+    <mat-divider></mat-divider>
+
+    <a mat-menu-item (click)="showChangePasswordDialog()">
+      <mat-icon style="color: #3f51b5;">lock_outline</mat-icon>
+      <span>Cambiar contraseña</span>
+    </a>
+
+    <mat-divider></mat-divider>
+
+    <a mat-menu-item (click)="logout()">
+      <mat-icon style="color: #3f51b5;">logout</mat-icon>
+      <span>Salir</span>
+    </a>
+
+  </div>
+</mat-menu>

@@ -1,0 +1,130 @@
+::ng-deep.mat-snack-bar-container {
+  padding: 0 !important;
+  max-width: 550px !important;
+}
+
+.notification-component-container {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  justify-content: left !important;
+  vertical-align: center !important;
+  horiz-align: left !important;
+  align-self: center !important;
+}
+
+.info-message-title {
+  font-size: 18px;
+  /*font-weight: bold;*/
+  text-shadow: 0.6px 0 0 #282A3C;
+  margin-top: 1px;
+  margin-bottom: 4px;
+  margin-left: 68px;
+  margin-right: 40px;
+}
+
+.info-message-content {
+  color: white;
+  margin-left: 68px;
+  margin-right: 15px;
+  text-align: justify;
+}
+
+.notification-component-content {
+  background-color: rgba(0, 0, 0, 0.3);
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  justify-content: center !important;
+  vertical-align: center !important;
+  horiz-align: center !important;
+  padding: 12px;
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+}
+
+.icon-container-elevation {
+  box-shadow: 0 0.2px 0.2px rgba(0, 0, 0, 0.12), 0 0.3px 0.5px rgba(0, 0, 0, 0.24);
+  transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
+  border-radius: 100%;
+  width: 32px;
+  height: 32px;
+}
+
+.notification-component-content .mat-icon {
+  color: white;
+  width: 32px;
+  height: 32px;
+  font-size: 32px;
+}
+
+.notification-component-message-content {
+  /*margin: 8px;*/
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.notification-component-close-btn {
+  float: right !important;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  justify-content: center !important;
+  vertical-align: center !important;
+  horiz-align: center !important;
+  width: 24px;
+  height: 24px;
+}
+
+.notification-component-close-btn:hover {
+  /*background: #d6d6d6 !important;*/
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.notification-component-close-btn:hover .mat-icon {
+  color: white;
+}
+
+.notification-component-close-btn .mat-icon {
+  /*color: white;*/
+  color: rgba(0, 0, 0, 0.5);
+  font-size: 18px;
+  width: 18px;
+  height: 18px;
+  line-height: 18px !important;
+}
+
+/*-----------------------------*/
+::ng-deep.mat-snack-bar-container.danger {
+  background-color: #f44336 !important;
+  color: #ffffff !important;
+}
+
+::ng-deep.mat-snack-bar-container.warning {
+  background-color: #ff5722 !important;
+  color: #ffffff !important;
+}
+
+::ng-deep.mat-snack-bar-container.info {
+  background-color: #3f51b5 !important;
+  color: #ffffff !important;
+}
+
+::ng-deep.mat-snack-bar-container.success {
+  color: #ffffff!important;
+  background-color: #3f51b5 !important;
+}
+
+::ng-deep.mat-snack-bar-container .danger .mat-button,
+::ng-deep.mat-snack-bar-container.warning .mat-button,
+::ng-deep.mat-snack-bar-container.info .mat-button,
+::ng-deep.mat-snack-bar-container.success .mat-button {
+  color: #fff !important;
+}
